@@ -9,7 +9,7 @@ Httpthief was made as a proof of concept. The goal was to make this work, not to
 
 Some future goals:
   * httpthief.py complete refactoring.
-  * 1x1 white px image blob on HTTP 200
+  * ~~1x1 white px image blob on HTTP 200~~ done. 
   * option to send XHR instead IMG SRC
   * option to prevent duplicating of records
   * option to store referer from clients http requests.
