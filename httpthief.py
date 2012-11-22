@@ -1,9 +1,9 @@
 #!/usr/bin/env python2
 #
-# Httpthief PoC.
+# Httpthief v0.1
 # author: Slawomir Rozbicki (httpthief@rozbicki.eu)
 # GPL v3. 
-# !!Change dir to directory with bitmap!!
+# !! run inside the script directory !!
 
 from BaseHTTPServer import HTTPServer
 from thiefhandler import ThiefHandler
