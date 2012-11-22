@@ -15,3 +15,4 @@ Some future goals:
   * option to store referer from clients http requests.
   * dbname argument in DB class, to allow easily dbname modification (from command line)
   * command line / cli interface.
+  * serve custom javascript file for clients.
