@@ -17,3 +17,4 @@ Some future goals:
   * command line / cli interface
   * serve custom javascript file for clients
   * better date format for storing timestamps in sqlite
+  * remove hardcoded content
