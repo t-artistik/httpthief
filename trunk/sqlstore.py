@@ -44,13 +44,3 @@ class DB():
         query = 'SELECT * FROM %s' % table
         print "-- TABLE DUMP (%s):" % table        
         print self.execute_query(query)
-   
-"""TEST CODE:
-a = DB()
-
-a.insert_cookie('1.2.3.4', 'bgfwew')
-a.insert_cred('3.55.21.11', 'userek', 'dumb55')
-
-a.dump_table('cookie')
-a.dump_table('cred')
-"""
