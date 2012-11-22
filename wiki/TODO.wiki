@@ -1,0 +1,15 @@
+#summary One-sentence summary of this page.
+
+= Introduction =
+
+Httpthief was made as a proof of concept. The goal was to make this work, not to provide powerful framework which can be easily hacked. I don't plan to develop this project anymore.
+
+
+= Details =
+
+Some future goals:
+  * httpthief.py complete refactoring.
+  * option to prevent duplicating of records
+  * option to store referer from clients http requests.
+  * dbname argument in DB class, to allow easily dbname modification (from command line)
+  * command line / cli interface.
