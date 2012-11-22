@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary TODO wishlist
 
 = Introduction =
 
@@ -8,12 +8,12 @@ Httpthief was made as a proof of concept. The goal was to make this work, not to
 = Details =
 
 Some future goals:
-  * httpthief.py complete refactoring.
-  * ~~1x1 white px image blob on HTTP 200~~ done. 
+  * httpthief.py ~~complete~~ partial refactoring (the code is still a mess).
+  * ~~1x1 white px image blob on HTTP 200~~ done, serving white BMP now. 
   * option to send XHR instead IMG SRC
-  * option to prevent duplicating of records
-  * option to store referer from clients http requests.
+  * ~~option to prevent duplicating of records~~ done (no more credentials duplicating)
+  * ~~option to store referer from clients http requests~~ done - stored in DB
   * dbname argument in DB class, to allow easily dbname modification (from command line)
   * command line / cli interface
   * serve custom javascript file for clients
-  * better format for storing date in sqlite
+  * better date format for storing timestamps in sqlite
