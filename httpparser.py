@@ -7,13 +7,14 @@ class HttpParser():
         return "HttpParser helper"
     def ParseHeaders(self, data):
         data = str(data)
-        data = data.split('\n')
+        data = data.split('\r\n') #its going to hurt in case there is no both CR+LF
         header = {}
         for i in range(len(data)):
             line = data[i].split(': ')
-            key = str(line[0])
-            value = str(line[1:])
-            header[key] = value
+            if len(str(line[0])): # prevent adding empty header
+                key = str(line[0])
+                value = str(line[1:][0])
+                header[key] = value
         return header
     def HasHeader(self, header, headers):
         try:
@@ -21,8 +22,7 @@ class HttpParser():
         except KeyError:
             return ""
     def ParseB64Credentials(self, data):
-        data = data.split(' ') #cut off the 'Basic ' prefix. TU JEST JAKIS BLAD!!!!!!! \r'] 
-        data = data[1]
+        data = data.replace('Basic ', '') #leave only the B64 creds. 
         try: #short creds not decoded properly - investigate.
             cred = b64decode(data)
         except TypeError:
