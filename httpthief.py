@@ -45,7 +45,7 @@ class MyHandler(BaseHTTPRequestHandler):
 def main():
     try:
         server = HTTPServer(('', 80), MyHandler)
-        print 'Welcome to the machine...'
+        print 'Welcome to the HttpThief, listening...'
         server.serve_forever()
     except KeyboardInterrupt:
         print '^C received, shutting down server'
