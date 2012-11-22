@@ -10,6 +10,7 @@ Httpthief was made as a proof of concept. The goal was to make this work, not to
 Some future goals:
   * httpthief.py ~~complete~~ partial refactoring (the code is still a mess).
   * cookie normalizer/parser
+  * option to disable auth popup
   * ~~1x1 white px image blob on HTTP 200~~ done, serving white BMP now. 
   * option to send XHR instead IMG SRC
   * ~~option to prevent duplicating of records~~ done (no more credentials duplicating)
