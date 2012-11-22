@@ -9,6 +9,7 @@ Httpthief was made as a proof of concept. The goal was to make this work, not to
 
 Some future goals:
   * httpthief.py complete refactoring.
+  * 1x1 white px image blob on HTTP 200
   * option to prevent duplicating of records
   * option to store referer from clients http requests.
   * dbname argument in DB class, to allow easily dbname modification (from command line)
