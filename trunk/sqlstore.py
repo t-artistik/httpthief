@@ -27,7 +27,7 @@ class DB():
         return cur.fetchall()
     def insert_cookie(self, client_ip, data, referer):
         date = self.now()
-        query = 'INSERT INTO cookie(Date, Clientip, Data) VALUES("%s", "%s", "%s", "%s")' % (date, client_ip, data, referer)
+        query = 'INSERT INTO cookie(Date, Clientip, Data, Referer) VALUES("%s", "%s", "%s", "%s")' % (date, client_ip, data, referer)
         self.execute_query(query)
     def insert_cred(self, client_ip, username, password, referer):
         date = self.now()
